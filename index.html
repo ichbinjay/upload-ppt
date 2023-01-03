@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> IDP PPT Upload </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+    <?!= include('JavaScript'); ?>
+    <style>
+        /*import roboto font*/
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,600,700,800,900);
+
+        button,
+        input {
+            font-size: 110%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            background-color: #68EFAD;
+            font-family: "Roboto", sans-serif;
+        }
+
+        #output {
+            padding: 2%;
+            font-size: 20px;
+            font-family: "Roboto", sans-serif;
+        }
+
+        #container {
+            height: 60%;
+            width: 90%;
+            margin-left: 5%;
+            background-color: #424242;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: center;
+            align-items: center;
+            margin-top: 35%;
+            text-align: center;
+            font-family: "Roboto", sans-serif;
+        }
+
+        #sub-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        #label {
+            /* make it look like a button */
+            display: inline-block;
+            padding: 0.5em 1em;
+            text-decoration: none;
+            color: #306e50;
+            font-weight: bolder;
+            border-radius: 3px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            background-color: #68EFAD;
+        }
+
+        button {
+            border: none;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 47%;
+            font-family: "Roboto", sans-serif;
+            font-weight: bold;
+            font-size: 2vh;
+            padding: 10%;
+            color: #6e3030;
+            background-color: #ef6872;
+            cursor: not-allowed;
+        }
+
+        html,
+        body {
+            height: 100%;
+            background-color: #303030;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="sub-container">
+            <h1>Upload PPT</h1>
+            <form id="myForm"
+                action="https://script.google.com/macros/s/AKfycbxHyjhQcEUTnIP92pCZLfTQaWmC2OaSBwzXr3mtbQXjcPScL-3k5wHwSfvZXabxnIzwgw/exec"
+                style="display: flex;flex-direction: column;align-content: center;justify-content: center;align-items: center;flex-wrap: wrap;"
+                method="post">
+                <div id="data"></div>
+                <input name="myFile" class="form-control-file" type="file" id="FormControlFile" required
+                    accept=".ppt, .pptx, .pdf" hidden /><label for="FormControlFile" id="label">Choose File</label>
+                <script>
+                    document.getElementById("FormControlFile").onchange = function () {
+                        document.getElementById("label").innerHTML = "File selected: <i>" + this.value.replace(/^.*[\\\/]/, '') + "</i>";
+                        // disable input field
+                        document.getElementById("FormControlFile").disabled = true;
+                        //make it look like plain text
+                        document.getElementById("label").style.backgroundColor = "#424242";
+                        document.getElementById("label").style.color = "white";
+                        document.getElementById("label").style.boxShadow = "none";
+                        document.getElementById("label").style.cursor = "default";
+                        //make submit button active
+                        document.getElementById("submitt").style.backgroundColor = "#68EFAD";
+                        document.getElementById("submitt").style.color = "#6e3030";
+                        document.getElementById("submitt").style.cursor = "pointer";
+                        document.getElementById("submitt").style.fontSize = "2.5vh";
+                        document.getElementById("submitt").style.borderRadius = "30%";
+                        document.getElementById("submitt").hidden = false;
+                        document.getElementById("submitt").disabled = false;
+                    };
+                    </script>
+                    <br>
+                <button type="submit" class="btn btn-primary btn-block" id="submitt" hidden>Submit</button>
+                <script>
+                    document.getElementById("submitt").onclick = function () {
+                        document.getElementById("output").innerHTML = "Uploading... Please wait";
+                    };
+                </script>
+            </form>
+            <script>
+                $('#FormControlFile').on("change", function () {
+                    var file = this.files[0];
+                    var fr = new FileReader();
+                    fr.fileName = file.name;
+                    var dummy = fr.fileName;
+                    if(isNaN(dummy.replace(/^.*[\\\/]/, '').split(".")[0])){
+                        window.alert("Please name your file as your batch number");
+                        window.location.reload();
+                    }
+                    fr.onload = function (e) {
+                        e.target.result
+                        html = '<input type="hidden" name="data" value="' + e.target.result.replace(/^.*,/, '') + '" >';
+                        html += '<input type="hidden" name="mimetype" value="' + e.target.result.match(/^.*(?=;)/)[0] + '" >';
+                        html += '<input type="hidden" name="filename" value="' + e.target.fileName + '" >';
+                        $("#data").empty().append(html);
+                    }
+                    fr.readAsDataURL(file);
+                });
+            </script>
+            <br><br>
+            <div id="output"> Upload file above and click submit </div>
+        </div>
+    </div>
+</body>
+
+</html>
