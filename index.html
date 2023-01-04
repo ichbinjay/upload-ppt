@@ -5,7 +5,6 @@
     <title> IDP PPT Upload </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
-    <?!= include('JavaScript'); ?>
     <style>
         /*import roboto font*/
         @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,600,700,800,900);
@@ -28,6 +27,7 @@
             height: 60%;
             width: 90%;
             margin-left: 5%;
+            margin-top: 5%;
             background-color: #424242;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             display: flex;
@@ -36,9 +36,14 @@
             flex-wrap: wrap;
             align-content: center;
             align-items: center;
-            margin-top: 35%;
             text-align: center;
             font-family: "Roboto", sans-serif;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+
         }
 
         #sub-container {
@@ -82,15 +87,194 @@
             height: 100%;
             background-color: #303030;
         }
+
+        #animation-container {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+
+        .sun {
+            animation: light 10s infinite;
+            height: 10%;
+            width: 100%;
+
+            position: absolute;
+            z-index: 2;
+        }
+
+        .moon {
+            animation: dark 10s infinite;
+            height: 10%;
+            width: 100%;
+
+            position: absolute;
+            z-index: 2;
+        }
+
+        /*slide from left to right*/
+        @keyframes light {
+            0% {
+                transform: translate(-20%, 0);
+            }
+            25%{
+                transform: translate(40%, -400%);
+            }
+
+            50% {
+                transform: translate(100%, 0);
+            }
+
+            75%{
+                transform: translate(40%, 400%);
+            }
+
+            100% {
+                transform: translate(-20%, 0);
+            }
+        }
+
+        @keyframes dark {
+            0% {
+                transform: translate(100%, 0);
+                color:silver;
+            }
+            25%{
+                transform: translate(40%, 400%);
+                color: white;
+
+            }
+
+            50% {
+                transform: translate(-20%, 0);
+                color: white;
+            }
+
+            75%{
+                transform: translate(40%, -400%);
+                color: white;
+            }
+
+            100% {
+                transform: translate(100%, 0);
+                color:silver;
+            }
+        }
+
+        .core{
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            z-index: 2;
+
+            height: 100%;
+            width: 20%;
+            background-color: orange;
+            border-radius: 50%;
+        }
+
+        @keyframes sun-color {
+            0% {
+                background-color: orange;
+            }
+            25%{
+                background-color: yellow;
+            }
+
+            50% {
+                background-color: orange;
+            }
+
+            100% {
+                background-color: orange;
+            }
+        }
+
+        .waves {
+      position: relative;
+      width: 100%;
+      height: 15vh;
+      margin-bottom: -7px;
+      z-index: 3;
+    }
+    /* Animation */
+
+    .parallax>use {
+      animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+    }
+
+    .parallax>use:nth-child(1) {
+      animation-delay: -2s;
+      animation-duration: 7s;
+    }
+
+    .parallax>use:nth-child(2) {
+      animation-delay: -3s;
+      animation-duration: 10s;
+    }
+
+    .parallax>use:nth-child(3) {
+      animation-delay: -4s;
+      animation-duration: 13s;
+    }
+
+    .parallax>use:nth-child(4) {
+      animation-delay: -5s;
+      animation-duration: 20s;
+    }
+
+    @keyframes move-forever {
+      0% {
+        transform: translate3d(-90px, 0, 0);
+      }
+
+      100% {
+        transform: translate3d(85px, 0, 0);
+      }
+    }
+
+    /*Shrinking for mobile*/
+    @media (max-width: 768px) {
+      .waves {
+        height: 100px;
+      }
+    }
     </style>
 </head>
 
 <body>
+    <div id="animation-container">
+        <div class="sun">
+            <div class="core" style="animation: sun-color 10s infinite;"> </div>
+        </div>
+        <div class="moon"> 
+            <div class="core" style="background-color: aliceblue;"> </div>
+        </div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0,0,255,1)" id="w4"/>
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0,0,255,0.5)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0,0,255,0.1)" />
+      </g>
+    </svg>
+    </div>
     <div id="container">
         <div id="sub-container">
             <h1>Upload PPT</h1>
             <form id="myForm"
-                action="https://script.google.com/macros/s/AKfycbxHyjhQcEUTnIP92pCZLfTQaWmC2OaSBwzXr3mtbQXjcPScL-3k5wHwSfvZXabxnIzwgw/exec"
+                action="https://script.google.com/macros/s/AKfycbx2TR4aBk94hBelyFPiypdaaTRBOqCJw-Cc1dc1_D74Z4Ei2EVQqecN_P4R_mXrpA-MGA/exec"
                 style="display: flex;flex-direction: column;align-content: center;justify-content: center;align-items: center;flex-wrap: wrap;"
                 method="post">
                 <div id="data"></div>
@@ -115,8 +299,8 @@
                         document.getElementById("submitt").hidden = false;
                         document.getElementById("submitt").disabled = false;
                     };
-                    </script>
-                    <br>
+                </script>
+                <br>
                 <button type="submit" class="btn btn-primary btn-block" id="submitt" hidden>Submit</button>
                 <script>
                     document.getElementById("submitt").onclick = function () {
@@ -130,7 +314,7 @@
                     var fr = new FileReader();
                     fr.fileName = file.name;
                     var dummy = fr.fileName;
-                    if(isNaN(dummy.replace(/^.*[\\\/]/, '').split(".")[0])){
+                    if (isNaN(dummy.replace(/^.*[\\\/]/, '').split(".")[0])) {
                         window.alert("Please name your file as your batch number");
                         window.location.reload();
                     }
@@ -145,7 +329,7 @@
                 });
             </script>
             <br><br>
-            <div id="output"> Tap on <b> Choose File </b> to start uploading </div>
+            <div id="output"> Upload file above and click submit </div>
         </div>
     </div>
 </body>
