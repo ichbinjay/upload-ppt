@@ -15,19 +15,25 @@
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             background-color: #68EFAD;
             font-family: "Roboto", sans-serif;
+            animation: button-toggler 20s infinite;
+        }
+
+        h1{
+            animation: theme-toggler 20s infinite;
         }
 
         #output {
             padding: 2%;
             font-size: 20px;
             font-family: "Roboto", sans-serif;
+            animation: theme-toggler 20s infinite;
         }
 
         #container {
-            height: 60%;
-            width: 90%;
-            margin-left: 5%;
-            margin-top: 5%;
+            height: 50%;
+            width: 80%;
+            margin-top: 10%;
+            margin-left: 10%;
             background-color: #424242;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             display: flex;
@@ -43,6 +49,7 @@
             top: 0;
             left: 0;
             z-index: 1;
+            animation: theme-toggler 20s infinite;
 
         }
 
@@ -67,6 +74,7 @@
             cursor: pointer;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             background-color: #68EFAD;
+            animation: button-toggler 20s infinite;
         }
 
         button {
@@ -80,12 +88,122 @@
             color: #6e3030;
             background-color: #ef6872;
             cursor: not-allowed;
+            animation: theme-toggler 20s infinite;
+
         }
 
         html,
         body {
             height: 100%;
             background-color: #303030;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+        body{
+            position: relative;
+            animation: theme-toggler-body 20s infinite;
+        }
+
+        @keyframes theme-toggler-body{
+            0% {
+                background-color: #F7CD5D;
+            }
+
+            25%{
+                background-color: skyblue;
+
+            }
+
+            50% {
+                background-color: #FA5F55;
+            }
+
+            60%{
+                background-color: #424242;
+            }
+            85%{
+                background-color: #424242;
+            }
+            90%{
+                background-color: #648cc0;
+            }
+
+            100% {
+                background-color: #F7CD5D;
+            }
+        }
+
+        @keyframes theme-toggler{
+             0% {
+                background-color: #5d87f7;
+            }
+
+            25%{
+                background-color: white;
+                color: black;
+            }
+
+            40%{
+                color: white;
+            }
+            50% {
+                background-color: #55f0fa;
+                color: white;
+            }
+
+            60%{
+                background-color: #424242;
+            }
+            85%{
+                background-color: #424242;
+                color: white;
+            }
+            90%{
+                background-color: #b3a271;
+                color: #8171b3;
+            }
+            
+            100% {
+                background-color: #5d87f7;
+                color: white;
+            }
+        }
+
+        @keyframes button-toggler{
+            0% {
+                background-color: #F7CD5D;
+                color: black;
+            }
+
+            25%{
+                background-color: blue;
+                color: white;
+            }
+
+            40%{
+                color: white;
+            }
+            50% {
+                background-color: #FA5F55;
+                color: white;
+            }
+
+            60%{
+                background-color: #68EFAD;
+            }
+            85%{
+                background-color: #68EFAD;
+                color: white;
+            }
+            90%{
+                background-color: #b3a271;
+                color: #8171b3;
+            }
+            
+            100% {
+                background-color: #5d87f7;
+                color: white;
+            }            
         }
 
         #animation-container {
@@ -102,7 +220,7 @@
         }
 
         .sun {
-            animation: light 10s infinite;
+            animation: light 20s infinite;
             height: 10%;
             width: 100%;
 
@@ -111,7 +229,7 @@
         }
 
         .moon {
-            animation: dark 10s infinite;
+            animation: dark 20s infinite;
             height: 10%;
             width: 100%;
 
@@ -124,8 +242,9 @@
             0% {
                 transform: translate(-20%, 0);
             }
+
             25%{
-                transform: translate(40%, -400%);
+                transform: translate(40%, -459%);
             }
 
             50% {
@@ -133,7 +252,7 @@
             }
 
             75%{
-                transform: translate(40%, 400%);
+                transform: translate(40%, 459%);
             }
 
             100% {
@@ -146,8 +265,9 @@
                 transform: translate(100%, 0);
                 color:silver;
             }
+
             25%{
-                transform: translate(40%, 400%);
+                transform: translate(40%, 459%);
                 color: white;
 
             }
@@ -158,7 +278,7 @@
             }
 
             75%{
-                transform: translate(40%, -400%);
+                transform: translate(40%, -459%);
                 color: white;
             }
 
@@ -207,7 +327,7 @@
     /* Animation */
 
     .parallax>use {
-      animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+      animation: move-forever 20s cubic-bezier(.55, .5, .45, .5) infinite;
     }
 
     .parallax>use:nth-child(1) {
@@ -217,7 +337,7 @@
 
     .parallax>use:nth-child(2) {
       animation-delay: -3s;
-      animation-duration: 10s;
+      animation-duration: 20;
     }
 
     .parallax>use:nth-child(3) {
@@ -252,7 +372,7 @@
 <body>
     <div id="animation-container">
         <div class="sun">
-            <div class="core" style="animation: sun-color 10s infinite;"> </div>
+            <div class="core" style="animation: sun-color 20s infinite;"> </div>
         </div>
         <div class="moon"> 
             <div class="core" style="background-color: aliceblue;"> </div>
@@ -264,9 +384,9 @@
       </defs>
       <g class="parallax">
         <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0,0,255,1)" id="w4"/>
-        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0,0,255,0.5)" />
-        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-        <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0,0,255,0.1)" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0,0,255,0.5)" id="w3"/>
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" id="w2"/>
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0,0,255,0.1)" id="w1"/>
       </g>
     </svg>
     </div>
@@ -286,7 +406,7 @@
                         // disable input field
                         document.getElementById("FormControlFile").disabled = true;
                         //make it look like plain text
-                        document.getElementById("label").style.backgroundColor = "#424242";
+                        document.getElementById("label").style.backgroundColor = "transparent";
                         document.getElementById("label").style.color = "white";
                         document.getElementById("label").style.boxShadow = "none";
                         document.getElementById("label").style.cursor = "default";
