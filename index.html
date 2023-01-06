@@ -9,16 +9,15 @@
         /*import roboto font*/
         @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,600,700,800,900);
 
-        button,
         input {
             font-size: 110%;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            background-color: #68EFAD;
+            /*background-color: #68EFAD;*/
             font-family: "Roboto", sans-serif;
             animation: button-toggler 20s infinite;
         }
 
-        h1{
+        h1, #file_name{
             animation: theme-toggler 20s infinite;
         }
 
@@ -85,10 +84,8 @@
             font-weight: bold;
             font-size: 2vh;
             padding: 10%;
-            color: #6e3030;
-            background-color: #ef6872;
             cursor: not-allowed;
-            animation: theme-toggler 20s infinite;
+            animation: button-toggler 20s infinite;
 
         }
 
@@ -399,10 +396,14 @@
                 method="post">
                 <div id="data"></div>
                 <input name="myFile" class="form-control-file" type="file" id="FormControlFile" required
-                    accept=".ppt, .pptx, .pdf" hidden /><label for="FormControlFile" id="label">Choose File</label>
+                    accept=".ppt, .pptx, .pdf" hidden /><label for="FormControlFile" id="label">Choose File</label><div id="file_name"></div>
                 <script>
                     document.getElementById("FormControlFile").onchange = function () {
-                        document.getElementById("label").innerHTML = "File selected: <i>" + this.value.replace(/^.*[\\\/]/, '') + "</i>";
+                        var file_name_div = document.getElementById("file_name");
+                        file_name_div.innerHTML = "File selected: <i>" + this.value.replace(/^.*[\\\/]/, '') + "</i>";
+                        document.getElementById("label").style.display = "none";
+
+
                         // disable input field
                         document.getElementById("FormControlFile").disabled = true;
                         //make it look like plain text
@@ -416,12 +417,10 @@
                         document.getElementById("submitt").style.cursor = "pointer";
                         document.getElementById("submitt").style.fontSize = "2.5vh";
                         document.getElementById("submitt").style.borderRadius = "30%";
-                        document.getElementById("submitt").hidden = false;
-                        document.getElementById("submitt").disabled = false;
                     };
                 </script>
                 <br>
-                <button type="submit" class="btn btn-primary btn-block" id="submitt" hidden>Submit</button>
+                <button type="submit" id="submitt" disabled>Submit</button>
                 <script>
                     document.getElementById("submitt").onclick = function () {
                         document.getElementById("output").innerHTML = "Uploading... Please wait";
@@ -435,9 +434,15 @@
                     fr.fileName = file.name;
                     var dummy = fr.fileName;
                     if (isNaN(dummy.replace(/^.*[\\\/]/, '').split(".")[0])) {
-                        window.alert("Please name your file as your batch number");
+                        window.alert("File name should be batch number!");
                         window.location.reload();
                     }
+                    if(1<=Number(dummy.replace(/^.*[\\\/]/, '').split(".")[0])<=23){
+                        window.alert("Invalid batch number! Please contact 𝗝𝗮𝘆 🐯");
+                        window.location.reload();
+                    }
+                    
+                    document.getElementById("submitt").disabled = false;
                     fr.onload = function (e) {
                         e.target.result
                         html = '<input type="hidden" name="data" value="' + e.target.result.replace(/^.*,/, '') + '" >';
