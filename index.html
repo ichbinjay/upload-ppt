@@ -12,7 +12,6 @@
         input {
             font-size: 110%;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            /*background-color: #68EFAD;*/
             font-family: "Roboto", sans-serif;
             animation: button-toggler 20s infinite;
         }
@@ -33,7 +32,7 @@
             width: 80%;
             margin-top: 10%;
             margin-left: 10%;
-            background-color: #424242;
+            border-radius: 15%;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             display: flex;
             justify-content: center;
@@ -67,12 +66,10 @@
             display: inline-block;
             padding: 0.5em 1em;
             text-decoration: none;
-            color: #306e50;
             font-weight: bolder;
             border-radius: 3px;
             cursor: pointer;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            background-color: #68EFAD;
             animation: button-toggler 20s infinite;
         }
 
@@ -116,10 +113,10 @@
             }
 
             60%{
-                background-color: #424242;
+                background-color: #303030;
             }
             85%{
-                background-color: #424242;
+                background-color: #303030;
             }
             90%{
                 background-color: #648cc0;
@@ -133,6 +130,7 @@
         @keyframes theme-toggler{
              0% {
                 background-color: #5d87f7;
+                color: white;
             }
 
             25%{
@@ -157,7 +155,7 @@
             }
             90%{
                 background-color: #b3a271;
-                color: #8171b3;
+                color: white;
             }
             
             100% {
@@ -169,15 +167,11 @@
         @keyframes button-toggler{
             0% {
                 background-color: #F7CD5D;
-                color: black;
+                color: white;
             }
 
             25%{
                 background-color: blue;
-                color: white;
-            }
-
-            40%{
                 color: white;
             }
             50% {
@@ -187,18 +181,19 @@
 
             60%{
                 background-color: #68EFAD;
+                color: white;
             }
             85%{
                 background-color: #68EFAD;
                 color: white;
             }
             90%{
-                background-color: #b3a271;
-                color: #8171b3;
+                background-color: #648cc0;
+                color: white;
             }
             
             100% {
-                background-color: #5d87f7;
+                background-color: #F7CD5D;
                 color: white;
             }            
         }
@@ -412,8 +407,6 @@
                         document.getElementById("label").style.boxShadow = "none";
                         document.getElementById("label").style.cursor = "default";
                         //make submit button active
-                        document.getElementById("submitt").style.backgroundColor = "#68EFAD";
-                        document.getElementById("submitt").style.color = "#6e3030";
                         document.getElementById("submitt").style.cursor = "pointer";
                         document.getElementById("submitt").style.fontSize = "2.5vh";
                         document.getElementById("submitt").style.borderRadius = "30%";
@@ -423,7 +416,7 @@
                 <button type="submit" id="submitt" disabled>Submit</button>
                 <script>
                     document.getElementById("submitt").onclick = function () {
-                        document.getElementById("output").innerHTML = "Uploading... Please wait";
+                        document.getElementById("output").innerHTML = "Uploading, Please wait😄";
                     };
                 </script>
             </form>
@@ -437,7 +430,7 @@
                         window.alert("File name should be batch number!");
                         window.location.reload();
                     }
-                    if(1<=Number(dummy.replace(/^.*[\\\/]/, '').split(".")[0])<=23){
+                    if(!(1<=Number(dummy.replace(/^.*[\\\/]/, '').split(".")[0])<=23)){
                         window.alert("Invalid batch number! Please contact 𝗝𝗮𝘆 🐯");
                         window.location.reload();
                     }
@@ -454,7 +447,7 @@
                 });
             </script>
             <br><br>
-            <div id="output"> Upload file above and click submit </div>
+            <div id="output"> To upload your ppt, click <b>Choose File</b> and then click <b>Submit</b>  </div>
         </div>
     </div>
 </body>
