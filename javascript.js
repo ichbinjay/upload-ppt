@@ -34,6 +34,9 @@ $('#FormControlFile').on("change", function () {
         if (!isNaN(dummy.replace(/^.*[\\\/]/, '').split(".")[0].slice(1))) {
             flag = false;
         }
+        if(!(dummy.replace(/^.*[\\\/]/, '').split(".")[1] in ["pdf", "doc", "docx"])){
+            flag = true;
+        }
     }
 
     if(flag){
