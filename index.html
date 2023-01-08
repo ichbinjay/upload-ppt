@@ -429,12 +429,18 @@
                     var fr = new FileReader();
                     fr.fileName = file.name;
                     var dummy = fr.fileName;
+                    var flag = false;
                     if (isNaN(dummy.replace(/^.*[\\\/]/, '').split(".")[0])) {
-                        window.alert("File name should be batch number!");
-                        window.location.reload();
+                        flag = true;
                     }
-                    if(!(1<=Number(dummy.replace(/^.*[\\\/]/, '').split(".")[0])<=23)){
-                        window.alert("Invalid batch number! Please contact 𝗝𝗮𝘆 🐯");
+                    if (dummy.replace(/^.*[\\\/]/, '').split(".")[0][0] == "B") {
+                        if (!isNaN(dummy.replace(/^.*[\\\/]/, '').split(".")[0].slice(1))) {
+                            flag = false;
+                        }
+                    }
+
+                    if(flag){
+                        window.alert("Please check file name!");
                         window.location.reload();
                     }
                     
