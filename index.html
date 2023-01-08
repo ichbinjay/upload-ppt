@@ -21,7 +21,7 @@
         }
 
         #output {
-            padding: 2%;
+            padding: 3%;
             font-size: 20px;
             font-family: "Roboto", sans-serif;
             animation: theme-toggler 20s infinite;
@@ -290,6 +290,8 @@
             width: 20%;
             background-color: orange;
             border-radius: 50%;
+            max-width: 130px;
+            max-height: 130px;
         }
 
         @keyframes sun-color {
@@ -323,34 +325,35 @@
     }
 
     .parallax>use:nth-child(1) {
-      animation-delay: -2s;
-      animation-duration: 7s;
+      animation-duration: 10s;
     }
-
-    .parallax>use:nth-child(2) {
-      animation-delay: -3s;
-      animation-duration: 20;
-    }
-
-    .parallax>use:nth-child(3) {
-      animation-delay: -4s;
-      animation-duration: 13s;
-    }
-
-    .parallax>use:nth-child(4) {
-      animation-delay: -5s;
-      animation-duration: 20s;
-    }
+    
 
     @keyframes move-forever {
       0% {
         transform: translate3d(-90px, 0, 0);
+        fill: blue;
       }
 
+      50% {
+        fill: rgb(119, 119, 233);
+      }
+      55%{
+        fill: white;
+      }
+
+      90%{
+        fill: white
+      }
+      95% {
+        fill: rgb(119, 119, 233);
+      }
       100% {
         transform: translate3d(85px, 0, 0);
+        fill: blue;
       }
     }
+
 
     /*Shrinking for mobile*/
     @media (max-width: 768px) {
@@ -358,6 +361,8 @@
         height: 100px;
       }
     }
+
+
     </style>
 </head>
 
@@ -375,10 +380,8 @@
         <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
       </defs>
       <g class="parallax">
-        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0,0,255,1)" id="w4"/>
-        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0,0,255,0.5)" id="w3"/>
-        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" id="w2"/>
-        <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0,0,255,0.1)" id="w1"/>
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0,0,255,1)"/>
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0,0,255,0.5)"/>
       </g>
     </svg>
     </div>
@@ -391,7 +394,7 @@
                 method="post">
                 <div id="data"></div>
                 <input name="myFile" class="form-control-file" type="file" id="FormControlFile" required
-                    accept=".ppt, .pptx, .pdf" hidden /><label for="FormControlFile" id="label">Choose File</label><div id="file_name"></div>
+                hidden /><label for="FormControlFile" id="label">Choose File</label><div id="file_name"></div>
                 <script>
                     document.getElementById("FormControlFile").onchange = function () {
                         var file_name_div = document.getElementById("file_name");
@@ -447,7 +450,7 @@
                 });
             </script>
             <br><br>
-            <div id="output"> To upload your ppt, click <b>Choose File</b> and then click <b>Submit</b>  </div>
+            <div id="output"> To upload your file, click <b>Choose File</b> and then click <b>Submit</b>.  </div>
         </div>
     </div>
 </body>
