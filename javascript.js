@@ -18,7 +18,7 @@ document.getElementById("FormControlFile").onchange = function () {
 };
 
 document.getElementById("submitt").onclick = function () {
-    document.getElementById("output").innerHTML = "Uploading, Please wait😄";
+    document.getElementById("output").innerHTML = "Uploading, Please wait 😄";
 };
 
 $('#FormControlFile').on("change", function () {
@@ -34,7 +34,7 @@ $('#FormControlFile').on("change", function () {
         if (!isNaN(dummy.replace(/^.*[\\\/]/, '').split(".")[0].slice(1))) {
             flag = false;
         }
-        if(!(dummy.replace(/^.*[\\\/]/, '').split(".")[1] in ["pdf", "doc", "docx"])){
+        if(!(dummy.replace(/^.*[\\\/]/, '').split(".")[1] == "pdf" || dummy.replace(/^.*[\\\/]/, '').split(".")[1] == "doc" || dummy.replace(/^.*[\\\/]/, '').split(".")[1] == "docx")){
             flag = true;
         }
     }
